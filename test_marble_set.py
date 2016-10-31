@@ -57,3 +57,24 @@ class MarbleSetTestCase(unittest.TestCase):
         marble_set = MarbleSet(shuffle=fake_shuffle.shuffle)
 
         self.assertEqual(marble_set.marbles[0], 'foobar')
+
+    def test_checkSolution_returns_true_if_index_and_is_heavier_are_correct(self):
+        self.marble_set.marbles = [1 for x in range(12)]
+        self.marble_set.marbles[5] = 2
+        self.assertTrue(self.marble_set.checkSolution([5, True]))
+
+        self.marble_set.marbles = [1 for x in range(12)]
+        self.marble_set.marbles[3] = 2
+        self.assertTrue(self.marble_set.checkSolution([3, True]))
+
+        self.marble_set.marbles = [1 for x in range(12)]
+        self.marble_set.marbles[8] = 2
+        self.assertTrue(self.marble_set.checkSolution([8, True]))
+
+        self.marble_set.marbles = [1 for x in range(12)]
+        self.marble_set.marbles[3] = 0
+        self.assertTrue(self.marble_set.checkSolution([3, False]))
+
+        self.marble_set.marbles = [1 for x in range(12)]
+        self.marble_set.marbles[9] = 0
+        self.assertTrue(self.marble_set.checkSolution([9, False]))
